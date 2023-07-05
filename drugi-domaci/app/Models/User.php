@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
@@ -31,7 +31,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'updated_at',
+        'created_at',
+        'email_verified_at'
     ];
+
+    public function toDoLists()
+    {
+        return $this->hasMany(ToDoList::class);
+    }
 
     /**
      * The attributes that should be cast.
